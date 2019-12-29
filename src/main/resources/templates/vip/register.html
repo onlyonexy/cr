@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <#include "../inc/meta.html" />
+    <#include "../inc/script.html" />
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=6286c1527bde1177f0a485952f3a7b74"></script>
+</head>
+<body>
+<h1 class="errMsg"></h1>
+<form id="query_form" onsubmit="return false;">
+    <input type="hidden" name="id" value="${user.recommendWx!''}">
+<table>
+
+    <tr>
+        <td>推荐人</td>
+        <td><input type="text" value="${user.recommendWx!''}" name="recommendWx"></td>
+    </tr>
+    <tr>
+        <td>会员微信号</td>
+        <td><input type="text"  value="${user.wxNo!''}" name="wxNo"></td>
+    </tr>
+    <tr>
+        <td>组别</td>
+        <td><select>
+            <option>11</option>
+            <option>22</option>
+            <option>33</option>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td>新会员姓名</td>
+        <td><input type="text"  name="userName">
+        </td>
+    </tr>
+    <tr>
+        <td>手机号</td>
+        <td><input type="text"  name="telNumber">
+        </td>
+    </tr>
+    <tr>
+        <td>注册日期</td>
+        <td><input type="date"  name="registTime">
+        </td>
+    </tr>
+    <tr>
+        <td><button onclick="getLocation()">获取位置</button></td>
+        <td> <button onclick="zc()">注册</button></td>
+    </tr>
+
+</table>
+</form>
+<div style="width: 200px;height: 300px" id="container"></div>
+<div style="width: 200px;height: 300px" id="tip"></div>
+<script>
+    function zc() {
+        var formData = $("#query_form").serializeObject();
+        console.log(formData);
+        $.ajax({
+            url: '${ctx}/uservip/save',
+            type: "POST",
+            cache: false,
+            data: JSON.stringify(formData),
+            dataType: "json",
+            contentType : "application/json;charsetset=UTF-8",//必须
+            // beforeSend : function(XMLHttpRequest) {openloading();},
+            error: function (xhr, status, e) {
+                alert('发送AJAX请求到"' + this.url + '"时出错[' + xhr.status + ']：' + e);
+                console.log(e);
+            },
+            complete: function(XMLHttpRequest, textStatus) {closeloading();},
+            success: function(data){
+                console.log("错误:",data);
+                var error = data.errorNo;
+                if (error == 0) {
+                    alert("添加成功");
+                } else {
+                    showErr(data.msg);
+                }
+            }
+        });
+    }
+    function closeloading() {
+        
+    }
+    function showErr(msg) {
+        alert(msg);
+    }
+    function getLocation(){
+    /***************************************
+     由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+     ***************************************/
+    var map, geolocation;
+    map = new AMap.Map('container');
+    map.plugin('AMap.Geolocation', function() {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true, //是否使用高精度定位，默认:true
+            timeout: 10000, //超过10秒后停止定位，默认：无穷大
+            maximumAge: 0, //定位结果缓存0毫秒，默认：0
+            convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+            showButton: true, //显示定位按钮，默认：true
+            buttonPosition: 'LB', //定位按钮停靠位置，默认：'LB'，左下角
+            buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            showMarker: true, //定位成功后在定位到的位置显示点标记，默认：true
+            showCircle: true, //定位成功后用圆圈表示定位精度范围，默认：true
+            panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
+            zoomToAccuracy: true //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError); //返回定位出错信息
+    });
+    }
+    var myplace = ''; //我的位置
+    var mycity = ''; //我所在的城市
+    //解析定位结果
+    function onComplete(data) {
+        var str = ['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        if (data.accuracy) {
+            str.push('精度：' + data.accuracy + ' 米');
+        } //如为IP精确定位结果则没有精度信息
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        document.getElementById('tip').innerHTML = str.join('<br>');
+        // parent.loca(data);
+        myplace = data.formattedAddress; //我的位置
+        mycity = data.addressComponent.city; //我所在的城市
+        console.log('str',data.position.getLng(),data.position.getLat());
+        console.log("我所在的地点为 " + data.formattedAddress);
+        console.log("我所在的城市为 " + data.addressComponent.city);
+    }
+
+    function getSomeOfMyVal() {
+        return myplace + "+" + mycity;
+    }
+
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败'+ JSON.stringify(data);
+    }
+
+    function getGeolocation() {
+        //geolocation.getCurrentPosition();
+        geolocation.getCityInfo();  //定位到城市
+
+    }
+    function group(){
+        $.ajax({
+            url: '${ctx}/user-vip-group/all',
+            type: "GET",
+            cache: false,
+            dataType: "json",
+            contentType : "application/json;charsetset=UTF-8",//必须
+            // beforeSend : function(XMLHttpRequest) {openloading();},
+            error: function (xhr, status, e) {
+                alert('发送AJAX请求到"' + this.url + '"时出错[' + xhr.status + ']：' + e);
+                console.log(e);
+            },
+            complete: function(XMLHttpRequest, textStatus) {closeloading();},
+            success: function(data){
+                console.log("错误:",data);
+                var error = data.errorNo;
+                if (error == 0) {
+                    alert("添加成功");
+                } else {
+                    showErr(data.msg);
+                }
+            }
+        });
+    }
+    $(function () {
+        group();
+    })
+</script>
+</body>
+</html>

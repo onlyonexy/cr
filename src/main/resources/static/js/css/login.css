@@ -1,0 +1,141 @@
+html {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-size: 10px;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-color: #f3f3f3;
+}
+
+.main {
+	/*width: 1360px;*/
+	min-width: 1360px;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.header {
+	width: 100%;
+	height: 80px;
+	/*position: relative;*/
+	/*margin-bottom: 30px;*/
+	/*padding-top: 10px;*/
+	
+	position: absolute;
+	top: 20px;
+	left: 4%;
+	z-index: 9999;
+}
+
+.header .logo{
+	width: 512px;
+	height: 86px;
+	background-image: url("../img/txtlogo_white.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.container {
+	width: 100%;
+	/*height: 620px;*/
+	position: relative;
+	background-image: url("../img/loginbg.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*border-radius: 2px;*/
+	z-index: 999;
+	height: 100%;
+}
+
+.loginbg_bottom{
+	width: 260px;
+	height: 91px;
+	background-image: url("../img/loginbg_bottom.png");
+	position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.lgbox {
+	width: 360px;
+	height: 260px;
+	background: rgba(255, 255, 255, 1);
+	position: absolute;
+	/*top: 90px;*/
+	/*left: 800px;*/
+	top: 30%;
+	right: 20%;
+	border-radius: 6px;
+}
+
+.lgtitle {
+	height: 30px;
+	width: 280px;
+	margin: 20px auto 0px auto;
+}
+
+.lgtitle span {
+	width: 40px;
+	height: 30px;
+	font-size: 26px;
+	color: #21a5f3;
+	font-weight: 900;
+}
+
+.lgbox form {
+	width: 280px;
+	margin: 0 auto;
+}
+
+.iptbox {
+	height: 42px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.iptbox input {
+	border-color: #ccc;
+	width: 280px;
+	height: 42px;
+	outline: none;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+
+.subbox {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	position: relative;
+}
+
+.subbox button {
+	display: block;
+	width: 280px;
+	line-height: 40px;
+	outline: none;
+	border: none;
+	text-align: center;
+	border-radius: 3px;
+	/*background: linear-gradient(to bottom, #2ea8e3, #1086d1) !important;*/
+	background-color: #1E9FFF;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.errMsg{
+	display: none;
+	color: red;
+	margin-bottom: 8px;
+}

@@ -1,0 +1,38 @@
+<script >
+var CTX = '${ctx}', ctxstatic = '${ctxstatic}';
+</script>
+<script src="${ctxstatic}/js/jquery.min.js" type="text/javascript"></script>
+<script src="${ctxstatic}/js/common.js" type="text/javascript"></script>
+<!--<script src="${ctxstatic}/plugin/layui/layui.all.js" type="text/javascript"></script>-->
+<!--<script src="${ctxstatic}/plugin/fontawesome/js/all.min.js" type="text/javascript"></script>-->
+<!--<script src="${ctxstatic}/js/fs.js" type="text/javascript"></script>-->
+<!--<script src="${ctxstatic}/js/common.js" type="text/javascript"></script>-->
+<!--<script type="text/javascript" src="${ctxstatic}/js/fsDict.js"></script>-->
+<!--<script type="text/javascript" src="${ctxstatic}/js/fsCommon.js"></script>-->
+<!--<script type="text/javascript" src="${ctxstatic}/js/fsForm.js"></script>-->
+<!--<script type="text/javascript" src="${ctxstatic}/js/frame.js"></script>-->
+<!--<script type="text/javascript" src="${ctxstatic}/js/index.js"></script>-->
+<script>
+    $.fn.serializeObject = function() {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if(o[this.name]) {
+                if(!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                var va = this.value;
+                if($.trim(va) != '') {
+                    o[this.name].push(va);
+                }
+            } else {
+                var va = this.value;
+                if($.trim(va) != '') {
+                    o[this.name] = va;
+                }
+            }
+        });
+        return o;
+    };
+
+</script>

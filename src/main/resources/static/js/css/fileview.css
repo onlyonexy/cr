@@ -1,0 +1,127 @@
+html, body {
+	background: #FFF;
+}
+
+.listview-searchbox {
+	text-align: right;
+	width: 100%;
+	margin: 0px auto 10px auto;
+	position: relative;
+	padding-bottom: 3px;
+}
+
+.listview-searchbox::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid #e1e1e8;
+	width: 200%;
+	height: 200%;
+	transform-origin: 0 0;
+	transform: scale(0.5, 0.5);
+	box-sizing: border-box;
+}
+
+.listview-searchbox-row {
+	width: 98%;
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+}
+
+.listview-searchbox-breadcrumb{
+	float: left;
+	margin-left: 10px;
+}
+
+.listview-searchbox-ops {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.listview-searchbox-ops i {
+	font-size: 22px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.listview-searchbox-ops .selected {
+	color: #4dadf7;
+}
+
+.listview-content {
+	margin: 20px 40px;
+	cursor: pointer;
+}
+
+.listview-item * {
+	
+}
+
+.listview-item {
+	width: 160px;
+	height: 160px;
+	float: left;
+	margin: 4px 0 0 6px;
+	text-align: center;
+	border: 1px solid #fff;
+	position: relative;
+	background-color: white;
+}
+
+.listview-item:hover {
+	background-color: #f1f5fa;
+	border: 1px solid #90c3fd;
+	border-radius: 5px;
+}
+
+.listview-icon-plus {
+	position: relative;
+	margin: 38px auto 0 auto;
+	width: 84px;
+	height: 84px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background: url(../img/listview-plus.svg) center no-repeat;
+	background-size: 70%;
+}
+
+.listview-icon-folder{
+	position: relative;
+	margin: 9px auto 0;
+	width: 84px;
+	height: 84px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background: url(../img/listview-folder.png) center no-repeat;
+	background-size: 80%;
+}
+
+.listview-icon-large {
+	position: relative;
+	margin: 9px auto 0;
+	width: 84px;
+	height: 84px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background: url(../img/listview-page.svg) center no-repeat;
+	background-size: 90%;
+}
+
+.listview-filename {
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 6px 5px 5px;
+}
+
+.listview-remark {
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 6px 5px 5px;
+	color: gray;
+}

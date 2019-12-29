@@ -1,0 +1,103 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+td,th,caption { font-size:14px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal;}
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#555; text-decoration:none; }
+a:hover { text-decoration:underline; }
+img { border:none; }
+ol,ul,li { list-style:none; }
+input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+table { border-collapse:collapse; }
+html {overflow-y: scroll;} 
+
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+
+.container{
+  width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.row-item{
+  height: 38px;
+  line-height: 38px;
+  margin: 0 10px;
+}
+.row input{
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.row button{
+  border: none;
+  background: #3078EF;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.row select{
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.list{
+  width: 100%;
+  padding: 20px;
+}
+.list-item{
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.list-item-title{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 38px;
+  line-height: 38px;
+  border-bottom: 1px solid #ccc;
+}
+.list-item-title button{
+  border: none;
+  background: #3078EF;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+.list-item-content{
+  display: flex;
+  flex-wrap: wrap;
+}
+.col1{
+  width: 98%;
+  margin: 1%;
+  box-sizing: border-box;
+}
+.col2{
+  width: 48%;
+  margin: 1%;
+  box-sizing: border-box;
+}
+.col3{
+  width: 31.3333%;
+  margin: 1%;
+  box-sizing: border-box;
+}
+.col4{
+  width: 23%;
+  margin: 1%;
+  box-sizing: border-box;
+}

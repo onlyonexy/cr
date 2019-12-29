@@ -1,0 +1,123 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+body { background:#fff; color:#555; font-size:14px; font-family: Verdana, Arial, Helvetica, sans-serif; }
+td,th,caption { font-size:14px; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal;}
+address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal;}
+a { color:#555; text-decoration:none; }
+a:hover { text-decoration:underline; }
+img { border:none; }
+ol,ul,li { list-style:none; }
+input, textarea, select, button { font:14px Verdana,Helvetica,Arial,sans-serif; }
+table { border-collapse:collapse; }
+html {overflow-y: scroll;} 
+
+.clearfix:after {content: "."; display: block; height:0; clear:both; visibility: hidden;}
+.clearfix { *zoom:1; }
+
+.container{
+  width: 1200px;
+  margin: 0 auto
+}
+.title{
+  width: 98%;
+  margin: 0 auto;
+  font-size: 16px;
+}
+.page-title{
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+.page-title h1{
+  height: 70px;
+  line-height: 70px;
+}
+.page-title .search{
+  width: 250px;
+  height: 38px;
+  margin: 16px;
+  /* background: #eee; */
+}
+.tongji-item{
+  width: 18%;
+  margin: 10px 1%;
+  background: #3078EF;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.bg1 {background: #3492ef;}
+.bg2 {background: #f25a4e;}
+.bg3 {background: #f3a027;}
+.bg4 {background: #5cbc9b;}
+.bg5 {background: #88bc77;}
+.bg6 {background: #ad9cd9;}
+
+.tongji-item h2{
+  text-align: center;
+  color: #fff;
+}
+.tongji-item p{
+  text-align: center;
+  color: #fff;
+}
+.row{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  justify-content: space-between;
+}
+.col1{
+  width: 98%;
+  margin: 1%;
+  box-sizing: border-box;
+  border: 1px solid #a1a1a1;
+}
+.col2{
+  width: 48%;
+  margin: 1%;
+  box-sizing: border-box;
+  border: 1px solid #a1a1a1;
+}
+.col3{
+  width: 31.3333%;
+  margin: 1%;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.col3-2{
+  width: 64.6666%;
+  margin: 1%;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.col-title{
+  width: 95%;
+  height: 38px;
+  line-height: 38px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid #B4CFFB;
+  color: #446EB4;
+}
+.chart{
+  height: 250px;
+}
+.table{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.table table{
+  width: 100%;
+  
+}
+.table table td{
+  border: 1px solid #888;
+  text-align: center;
+  line-height: 30px;
+}

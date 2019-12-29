@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <#include "inc/meta.html" />
+    <#include "inc/script.html" />
+</head>
+<body>
+<h1 class="errMsg"></h1>
+<table>
+    <tr>
+        <td>账号</td>
+        <td><input type="text" id="uname" value="lihua"></td>
+        <td>密码</td>
+        <td><input type="password" id="upass" value="123456"></td>
+        <td>密码</td>
+        <td> <button onclick="dologin()">登录</button></td>
+    </tr>
+
+
+</table>
+<script>
+function login() {
+    console.log("222sdfds")
+}
+
+    $(document).keyup(function(event){
+        if(event.keyCode == 13){
+            dologin();
+        }
+    });
+
+function showErr(msg){
+    $('.errMsg').text(msg);
+    $('.errMsg').css('display', "block");
+}
+
+function dologin(){
+    var uname = $.trim($('#uname').val());
+    var upass = $.trim($('#upass').val());
+    if(uname == ''){
+        showErr('请输入用户名');
+    }else if(upass == ''){
+        showErr('请输入密码');
+    }else{
+        $.ajax({
+            url: '${ctx}/user/dologin',
+            type: "POST",
+            cache: false,
+            data: {'name': uname, 'pwd': upass},
+            dataType: "json",
+            // beforeSend : function(XMLHttpRequest) {openloading();},
+            error: function (xhr, status, e) {layer.msg('发送AJAX请求到"' + this.url + '"时出错[' + xhr.status + ']：' + e);
+                console.log(e);
+            },
+            complete: function(XMLHttpRequest, textStatus) {closeloading();},
+            success: function(data){
+                console.log("错误:",data);
+                var error = data.error;
+                if (error == 0) {
+                    window.top.location.replace('${ctx}/' + data.url);
+                } else {
+                    showErr(data.msg);
+                }
+            }
+        });
+    }
+}
+</script>
+</body>
+</html>

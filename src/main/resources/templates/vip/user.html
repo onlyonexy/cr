@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <#include "../inc/meta.html" />
+    <#include "../inc/script.html" />
+</head>
+<body>
+<h1>会员查询</h1>
+<form id="query_form"></form>
+    <table id="data">
+
+        <thead>
+        <tr>
+            <td> 姓名</td>
+            <td> 微信号</td>
+            <td> 注册日期</td>
+        </tr>
+        </thead>
+
+    </table>
+<div><span onclick="get()">下一页</span></div>
+</body>
+<script>
+    var  pageNo = 1;
+    $(function(){
+        query();
+    });
+    function  get() {
+        pageNo = pageNo+1;
+        query();
+    }
+function  query() {
+    var formData = $("#query_form").serializeObject();
+    formData.pageNo = pageNo;
+    $.ajax({
+        url: '${ctx}/uservip/list',
+        type: "POST",
+        cache: false,
+       data: JSON.stringify(formData),
+        dataType: "json",
+        contentType : "application/json;charsetset=UTF-8",//必须
+        // beforeSend : function(XMLHttpRequest) {openloading();},
+        error: function (xhr, status, e) {
+            alert('发送AJAX请求到"' + this.url + '"时出错[' + xhr.status + ']：' + e);
+            console.log(e);
+        },
+        complete: function(XMLHttpRequest, textStatus) {closeloading();},
+        success: function(data){
+            console.log("返回数据:",data);
+            var error = data.errorNo;
+            if (error == 0) {
+               // alert("添加成功");
+                var d = data.data;
+                pageNo = d.pageNo;
+                console.log("{}",d);
+                var str = ' <tr>\n' +
+                    '            <td> 姓名</td>\n' +
+                    '            <td> 微信号</td>\n' +
+                    '            <td> 注册日期</td>\n' +
+                    '        </tr>';
+                console.log(d);
+                $.each(d.data, function(index, item) {
+                   str += '<tr><td>';
+                   str += item.userName;
+                   str += '</td><td>';
+                   str += item.wxNo;
+                    str += '</td><td>';
+                    str += item.registTime;
+                   str += '</td></tr>';
+                });
+                $("#data").empty();
+                $("#data").append(str);
+            } else {
+                showErr(data.msg);
+            }
+        }
+    });
+}
+function  showErr(msg) {
+    alert(msg);
+}
+</script>
+</html>
